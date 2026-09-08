@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ashlem | Personal Website</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    color: white;
+    text-align: center;
+    background: linear-gradient(-45deg, #ff416c, #ff4b2b, #7f00ff, #00c6ff);
+    background-size: 400% 400%;
+    animation: bg 12s ease infinite;
+}
+
+@keyframes bg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 60px 20px;
+}
+
+.profile {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 0 30px rgba(255,255,255,0.7);
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 42px;
+}
+
+.subtitle {
+    margin: 10px 0 25px;
+    font-size: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 25px;
+    margin-top: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+button {
+    margin: 8px;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+footer {
+    margin-top: 40px;
+    opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Apni photo ka naam photo.jpg rakho -->
+    <img src="wallpaper_1788709127551.jpg" class="profile">
+
+    <h1>Ashlem 👋🏿</h1>
+
+    <p class="subtitle">
+        Welcome to my personal website ❤️
+    </p>
+
+    <div class="card">
+        <h2>✨ About Me</h2>
+        <br>
+        <p>
+            Hello! My name is Ashlem.
+            Welcome to my little corner of the internet.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>🚀 My Interests</h2>
+        <br>
+        <p>💻 Coding</p>
+        <p>🎮 Gaming</p>
+        <p>📱 Technology</p>
+        <p>🎨 Creative Projects</p>
+    </div>
+
+    <div class="card">
+        <h2>🔗 Connect With Me</h2>
+        <br>
+
+        <button onclick="alert('Hello Ashlem! 👋🏿')">
+            Say Hello 👋
+        </button>
+
+        <button onclick="alert('Thanks for visiting ❤️')">
+            Thank You ❤️
+        </button>
+    </div>
+
+    <footer>
+        © 2026 Ashlem • Made with ❤️ and Termux
+    </footer>
+
+</div>
+
+</body>
+</html>
