@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ashlem | My World</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    color:white;
+    background:#090014;
+    overflow-x:hidden;
+}
+
+/* ===== ANIMATED BACKGROUND ===== */
+
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-2;
+    background:
+        radial-gradient(circle at 20% 20%,#7b00ff55,transparent 30%),
+        radial-gradient(circle at 80% 80%,#ff008855,transparent 30%),
+        linear-gradient(135deg,#08000f,#180025,#250014);
+}
+
+.blob{
+    position:absolute;
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    background:#a000ff55;
+    filter:blur(70px);
+    animation:move 12s infinite alternate ease-in-out;
+}
+
+.blob:nth-child(1){
+    top:10%;
+    left:5%;
+}
+
+.blob:nth-child(2){
+    bottom:10%;
+    right:5%;
+    background:#ff009955;
+    animation-delay:3s;
+}
+
+.blob:nth-child(3){
+    top:45%;
+    left:45%;
+    background:#6400ff44;
+    animation-delay:6s;
+}
+
+@keyframes move{
+    0%{
+        transform:translate(0,0) scale(1);
+    }
+    50%{
+        transform:translate(100px,-80px) scale(1.3);
+    }
+    100%{
+        transform:translate(-80px,100px) scale(.8);
+    }
+}
+
+/* PARTICLES */
+
+.particles{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+}
+
+.particles span{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    opacity:.5;
+    animation:float 8s infinite linear;
+}
+
+.particles span:nth-child(1){left:10%;top:80%}
+.particles span:nth-child(2){left:20%;top:40%;animation-delay:2s}
+.particles span:nth-child(3){left:35%;top:70%;animation-delay:4s}
+.particles span:nth-child(4){left:50%;top:20%;animation-delay:1s}
+.particles span:nth-child(5){left:65%;top:60%;animation-delay:3s}
+.particles span:nth-child(6){left:80%;top:30%;animation-delay:5s}
+.particles span:nth-child(7){left:90%;top:80%;animation-delay:2s}
+
+@keyframes float{
+    0%{transform:translateY(0);opacity:0}
+    30%{opacity:.8}
+    100%{transform:translateY(-500px);opacity:0}
+}
+
+/* ===== NAVBAR ===== */
+
+nav{
+    position:fixed;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    width:92%;
+    max-width:950px;
+    padding:14px 22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border:1px solid #ffffff22;
+    background:#ffffff0c;
+    backdrop-filter:blur(18px);
+    border-radius:30px;
+    z-index:100;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#d96aff;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    margin-left:16px;
+    font-size:14px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#e66aff;
+}
+
+/* ===== SECTIONS ===== */
+
+section{
+    min-height:100vh;
+    padding:120px 7% 70px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.title{
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+.subtitle{
+    color:#aaa;
+    margin-bottom:40px;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+    padding-top:150px;
+}
+
+.avatar{
+    width:145px;
+    height:145px;
+    object-fit:cover;
+    border-radius:50%;
+    padding:5px;
+    border:3px solid #df76ff;
+    box-shadow:0 0 25px #c000ff,
+               0 0 80px #8000ff66;
+    animation:avatarFloat 4s infinite ease-in-out;
+}
+
+@keyframes avatarFloat{
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+.badge{
+    margin-top:25px;
+    padding:10px 20px;
+    border-radius:30px;
+    border:1px solid #ffffff20;
+    background:#ffffff0c;
+    color:#ddd;
+}
+
+h1{
+    font-size:clamp(50px,10vw,90px);
+    margin:20px 0;
+}
+
+.gradient{
+    background:linear-gradient(90deg,#fff,#dc65ff,#8b5cff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:650px;
+    color:#ccc;
+    line-height:1.7;
+    font-size:18px;
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+    margin-top:30px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.btn{
+    padding:14px 25px;
+    border-radius:30px;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    border:1px solid #ffffff20;
+    background:linear-gradient(90deg,#9b00ff,#ff209d);
+    box-shadow:0 10px 30px #a000ff44;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-5px) scale(1.03);
+}
+
+.btn.secondary{
+    background:#ffffff0d;
+}
+
+/* ===== CARDS ===== */
+
+.cards{
+    width:100%;
+    max-width:1050px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+}
+
+.card{
+    padding:28px;
+    border-radius:25px;
+    background:#ffffff0b;
+    border:1px solid #ffffff18;
+    backdrop-filter:blur(15px);
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#dc65ff66;
+    box-shadow:0 20px 50px #9d00ff33;
+}
+
+.icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#aaa;
+    line-height:1.6;
+}
+
+/* ===== PROJECTS ===== */
+
+.project-card{
+    overflow:hidden;
+    text-align:left;
+}
+
+.project-image{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    border-radius:18px;
+    margin-bottom:18px;
+}
+
+.project-card h3{
+    font-size:22px;
+}
+
+.project-card p{
+    margin-bottom:18px;
+}
+
+.project-btn{
+    display:inline-block;
+    padding:9px 16px;
+    border-radius:20px;
+    color:white;
+    text-decoration:none;
+    background:#ffffff12;
+    border:1px solid #ffffff20;
+}
+
+.project-btn:hover{
+    background:#a000ff55;
+}
+
+/* ===== GALLERY ===== */
+
+.gallery{
+    width:100%;
+    max-width:1050px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
+
+.gallery img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:20px;
+    border:1px solid #ffffff18;
+    transition:.4s;
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+    box-shadow:0 10px 40px #a000ff66;
+}
+
+/* ===== CONTACT ===== */
+
+.contact-box{
+    width:100%;
+    max-width:650px;
+    padding:40px;
+    border-radius:30px;
+    background:#ffffff0b;
+    border:1px solid #ffffff18;
+    backdrop-filter:blur(15px);
+}
+
+.contact-box p{
+    color:#bbb;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+.socials{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.socials a{
+    padding:12px 18px;
+    border-radius:20px;
+    color:white;
+    text-decoration:none;
+    background:#ffffff10;
+    border:1px solid #ffffff18;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#888;
+    border-top:1px solid #ffffff10;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:600px){
+
+    nav{
+        padding:12px 15px;
+    }
+
+    nav a{
+        margin-left:6px;
+        font-size:11px;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    h1{
+        font-size:50px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .title{
+        font-size:35px;
+    }
+
+    .gallery{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .gallery img{
+        height:170px;
+    }
+
+    .contact-box{
+        padding:28px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ANIMATED BACKGROUND -->
+
+<div class="background">
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+</div>
+
+<div class="particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="logo">
+        Ashlem<span>✦</span>
+    </div>
+
+    <div>
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+    <img
+        class="avatar"
+        src="file_0000000036c48211a3a9c83fe44b8877.png"
+        alt="Ashlem">
+
+    <div class="badge">
+        ✦ Welcome to my world
+    </div>
+
+    <h1>
+        I'm <span class="gradient">Ashlem</span> 👋
+    </h1>
+
+    <p>
+        Welcome to my personal website — a place for
+        creativity, technology, projects and ideas.
+    </p>
+
+    <div class="buttons">
+        <a class="btn" href="#projects">
+            🚀 Explore Projects
+        </a>
+
+        <a class="btn secondary" href="#gallery">
+            🖼️ View Gallery
+        </a>
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <h2 class="title">✨ About Me</h2>
+
+    <p class="subtitle">
+        A little bit about me
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">👋</div>
+            <h3>Hello!</h3>
+            <p>
+                Welcome to my personal website.
+                This is my little corner of the internet.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">💻</div>
+            <h3>Coding</h3>
+            <p>
+                I enjoy creating websites and
+                experimenting with new technology.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🚀</div>
+            <h3>Dream Big</h3>
+            <p>
+                Learning new things and building
+                creative projects step by step.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+    <h2 class="title">🚀 My Projects</h2>
+
+    <p class="subtitle">
+        Some things I'm building
+    </p>
+
+    <div class="cards">
+
+        <div class="card project-card">
+
+            <img
+                class="project-image"
+                src="wallpaper_1788709127551.jpg"
+                alt="Project">
+
+            <h3>🌐 Personal Website</h3>
+
+            <p>
+                My own personal website created
+                with HTML and CSS.
+            </p>
+
+            <a
+                class="project-btn"
+                href="#home">
+                View Project →
+            </a>
+
+        </div>
+
+
+        <div class="card project-card">
+
+            <img
+                class="project-image"
+                src="wallpaper_1788709127551.jpg"
+                alt="Project">
+
+            <h3>🎮 Minecraft Project</h3>
+
+            <p>
+                A creative Minecraft project
+                with custom ideas and features.
+            </p>
+
+            <a
+                class="project-btn"
+                href="#contact">
+                Coming Soon →
+            </a>
+
+        </div>
+
+
+        <div class="card project-card">
+
+            <img
+                class="project-image"
+                src="wallpaper_1788709127551.jpg"
+                alt="Project">
+
+            <h3>🤖 AI Experiments</h3>
+
+            <p>
+                Exploring AI, creative tools
+                and new technology.
+            </p>
+
+            <a
+                class="project-btn"
+                href="#contact">
+                Coming Soon →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PHOTO GALLERY -->
+
+<section id="gallery">
+
+    <h2 class="title">🖼️ Photo Gallery</h2>
+
+    <p class="subtitle">
+        My favorite moments
+    </p>
+
+    <div class="gallery">
+
+        <img
+            src="file_0000000036c48211a3a9c83fe44b8877.png"
+            alt="Gallery photo">
+
+        <img
+            src="wallpaper_1788709127551.jpg"
+            alt="Gallery photo">
+
+        <img
+            src="file_0000000036c48211a3a9c83fe44b8877.png"
+            alt="Gallery photo">
+
+        <img
+            src="wallpaper_1788709127551.jpg"
+            alt="Gallery photo">
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <h2 class="title">💜 Let's Connect</h2>
+
+    <p class="subtitle">
+        Thanks for visiting!
+    </p>
+
+    <div class="contact-box">
+
+        <p>
+            Want to say hello or check out my projects?
+            Connect with me below.
+        </p>
+
+        <div class="socials">
+
+            <a href="mailto:your-email@gmail.com">
+                📧 Email
+            </a>
+
+            <a href="https://github.com/Ashlemtoppo">
+                🐙 GitHub
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+    © 2026 Ashlem • Made with 💜
+</footer>
+
+</body>
+</html>
