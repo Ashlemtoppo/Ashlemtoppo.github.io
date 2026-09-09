@@ -3,136 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="theme-color" content="#12051f">
 <title>Ashlem | Personal Website</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins',sans-serif;
+  color:#fff;
+  background:#090313;
+  overflow-x:hidden;
+}
+body:before,body:after{
+  content:"";position:fixed;z-index:-2;border-radius:50%;filter:blur(70px);opacity:.45;
+}
+body:before{width:300px;height:300px;background:#7c19ff;top:-80px;left:-100px}
+body:after{width:350px;height:350px;background:#ff238d;right:-140px;top:45%}
+
+.bg{
+  position:fixed;inset:0;z-index:-3;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(124,25,255,.18),transparent 30%),
+    radial-gradient(circle at 80% 70%,rgba(255,35,141,.14),transparent 30%),
+    linear-gradient(135deg,#08020f,#160528 55%,#090313);
+}
+.bg span{
+  position:absolute;width:5px;height:5px;border-radius:50%;
+  background:#fff;opacity:.35;animation:float 8s linear infinite;
+}
+@keyframes float{0%{transform:translateY(105vh);opacity:0}20%{opacity:.4}100%{transform:translateY(-10vh);opacity:0}}
+
+nav{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  width:min(92%,900px);padding:12px 18px;z-index:20;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(18px);border-radius:22px;box-shadow:0 15px 50px #0006;
+}
+.logo{font-size:1.2rem;font-weight:800;letter-spacing:.5px}
+.logo b{color:#d879ff}
+nav a{color:#fff;text-decoration:none;font-size:.82rem;margin-left:18px;opacity:.8;transition:.25s}
+nav a:hover{opacity:1;color:#e49cff}
+
+section{width:min(92%,1000px);margin:auto}
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:110px 0 70px;
+}
+.hero-inner{max-width:750px}
+.avatar{
+  width:145px;height:145px;margin:0 auto 25px;border-radius:50%;
+  padding:5px;background:linear-gradient(135deg,#fff,#b34cff,#ff4eae);
+  box-shadow:0 0 35px #b73cffaa,0 0 90px #ff299955;
+}
+.avatar div{
+  width:100%;height:100%;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(145deg,#3d1165,#a916b9);
+  font-size:4rem;border:3px solid #160623;
+}
+.badge{
+  display:inline-block;padding:7px 14px;border:1px solid #ffffff22;
+  background:#ffffff0d;border-radius:99px;font-size:.78rem;color:#e7c8ff;
+  margin-bottom:16px;
+}
+h1{font-size:clamp(3rem,10vw,6.5rem);line-height:.95;font-weight:800}
+.gradient{background:linear-gradient(90deg,#fff,#df7cff,#ff72b8);-webkit-background-clip:text;color:transparent}
+.hero p{font-size:1.05rem;color:#d8cde0;margin:22px auto;max-width:620px}
+.buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{
+  text-decoration:none;color:#fff;padding:12px 21px;border-radius:14px;
+  border:1px solid #ffffff1e;background:#ffffff0d;transition:.3s;font-weight:600;font-size:.9rem
+}
+.btn.primary{background:linear-gradient(135deg,#8d22ff,#ef36a8);box-shadow:0 10px 30px #a526ff44;border:0}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px #0007}
+
+.title{text-align:center;margin-bottom:35px}
+.title span{color:#d27cff;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.title h2{font-size:2.1rem;margin-top:6px}
+
+.about{padding:80px 0}
+.card{
+  background:linear-gradient(145deg,#ffffff0d,#ffffff04);
+  border:1px solid #ffffff14;border-radius:26px;padding:30px;
+  backdrop-filter:blur(15px);box-shadow:0 20px 60px #0005;
+}
+.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+.card h3{font-size:1.25rem;margin-bottom:12px}
+.card p{color:#cfc4d7;line-height:1.8;font-size:.94rem}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{padding:20px;border-radius:18px;background:#ffffff08;border:1px solid #ffffff0e;text-align:center}
+.stat strong{display:block;font-size:1.5rem;color:#df87ff}.stat small{color:#aaa0b2}
+
+.interests{padding:60px 0 90px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.interest{position:relative;overflow:hidden;min-height:175px}
+.interest:after{
+  content:"";position:absolute;width:100px;height:100px;border-radius:50%;
+  background:#c82dff33;filter:blur(25px);right:-30px;bottom:-30px
+}
+.icon{font-size:2rem;margin-bottom:16px}
+.interest h3{margin-bottom:8px}.interest p{font-size:.82rem!important;line-height:1.6!important}
+
+.contact{padding:20px 0 90px}
+.contact .card{text-align:center}
+.socials{display:flex;justify-content:center;gap:12px;margin-top:20px;flex-wrap:wrap}
+.social{padding:10px 17px;border-radius:12px;background:#ffffff0a;border:1px solid #ffffff14;color:#fff;text-decoration:none;font-size:.85rem}
+
+footer{
+  text-align:center;padding:25px;color:#8f8497;font-size:.75rem;
+  border-top:1px solid #ffffff0b
 }
 
-body {
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    color: white;
-    text-align: center;
-    background: linear-gradient(-45deg, #ff416c, #ff4b2b, #7f00ff, #00c6ff);
-    background-size: 400% 400%;
-    animation: bg 12s ease infinite;
-}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .8s,transform .8s}
+.reveal.show{opacity:1;transform:none}
 
-@keyframes bg {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.container {
-    max-width: 700px;
-    margin: auto;
-    padding: 60px 20px;
-}
-
-.profile {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid white;
-    box-shadow: 0 0 30px rgba(255,255,255,0.7);
-}
-
-h1 {
-    margin-top: 20px;
-    font-size: 42px;
-}
-
-.subtitle {
-    margin: 10px 0 25px;
-    font-size: 20px;
-}
-
-.card {
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    padding: 25px;
-    border-radius: 25px;
-    margin-top: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-button {
-    margin: 8px;
-    padding: 13px 25px;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    transform: scale(1.08);
-}
-
-footer {
-    margin-top: 40px;
-    opacity: 0.8;
+@media(max-width:700px){
+  nav{padding:11px 14px}.logo{font-size:1rem}nav a{margin-left:9px;font-size:.7rem}
+  .about-grid,.grid{grid-template-columns:1fr}
+  .hero{padding-top:120px}
+  .avatar{width:125px;height:125px}
+  .hero p{font-size:.9rem}
+  .card{padding:22px}
 }
 </style>
 </head>
 
 <body>
-
-<div class="container">
-
-    <!-- Apni photo ka naam photo.jpg rakho -->
-    <img src="wallpaper_1788709127551.jpg" class="profile">
-
-    <h1>Ashlem 👋🏿</h1>
-
-    <p class="subtitle">
-        Welcome to my personal website ❤️
-    </p>
-
-    <div class="card">
-        <h2>✨ About Me</h2>
-        <br>
-        <p>
-            Hello! My name is Ashlem.
-            Welcome to my little corner of the internet.
-        </p>
-    </div>
-
-    <div class="card">
-        <h2>🚀 My Interests</h2>
-        <br>
-        <p>💻 Coding</p>
-        <p>🎮 Gaming</p>
-        <p>📱 Technology</p>
-        <p>🎨 Creative Projects</p>
-    </div>
-
-    <div class="card">
-        <h2>🔗 Connect With Me</h2>
-        <br>
-
-        <button onclick="alert('Hello Ashlem! 👋🏿')">
-            Say Hello 👋
-        </button>
-
-        <button onclick="alert('Thanks for visiting ❤️')">
-            Thank You ❤️
-        </button>
-    </div>
-
-    <footer>
-        © 2026 Ashlem • Made with ❤️ and Termux
-    </footer>
-
+<div class="bg">
+  <span style="left:8%;animation-delay:1s"></span><span style="left:22%;animation-delay:4s"></span>
+  <span style="left:38%;animation-delay:2s"></span><span style="left:57%;animation-delay:6s"></span>
+  <span style="left:74%;animation-delay:3s"></span><span style="left:91%;animation-delay:5s"></span>
 </div>
 
+<nav>
+  <div class="logo">Ashlem<span>✦</span></div>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#interests">Interests</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-inner reveal">
+    <div class="avatar"><div>👋</div></div>
+    <div class="badge">✦ Welcome to my personal website</div>
+    <h1>I'm <span class="gradient">Ashlem</span> 👋</h1>
+    <p>Welcome to my little corner of the internet — a place for my ideas, interests, creativity and projects.</p>
+    <div class="buttons">
+      <a class="btn primary" href="#about">Explore My World ✨</a>
+      <a class="btn" href="#contact">Say Hello 💜</a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="title reveal"><span>Get to know me</span><h2>About Me</h2></div>
+  <div class="about-grid">
+    <div class="card reveal">
+      <h3>✨ A little about me</h3>
+      <p>Hello! My name is Ashlem. I enjoy exploring technology, creating things, learning new skills and turning ideas into something real. This website is my personal space on the web.</p>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><strong>💻</strong><small>Coding</small></div>
+      <div class="stat"><strong>🎮</strong><small>Gaming</small></div>
+      <div class="stat"><strong>🎨</strong><small>Creativity</small></div>
+      <div class="stat"><strong>🚀</strong><small>Learning</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="interests" id="interests">
+  <div class="title reveal"><span>What I like</span><h2>My Interests</h2></div>
+  <div class="grid">
+    <div class="card interest reveal"><div class="icon">💻</div><h3>Coding</h3><p>Building websites, experimenting with code and learning new technology.</p></div>
+    <div class="card interest reveal"><div class="icon">🎮</div><h3>Gaming</h3><p>Playing games, discovering new worlds and trying creative ideas.</p></div>
+    <div class="card interest reveal"><div class="icon">🎨</div><h3>Creative Work</h3><p>Design, images, ideas and making digital experiences look better.</p></div>
+    <div class="card interest reveal"><div class="icon">📱</div><h3>Technology</h3><p>Exploring smartphones, apps, websites and useful digital tools.</p></div>
+    <div class="card interest reveal"><div class="icon">🌱</div><h3>Learning</h3><p>Learning English, improving skills and discovering something new every day.</p></div>
+    <div class="card interest reveal"><div class="icon">🚀</div><h3>Future Projects</h3><p>Turning new ideas into projects and continuing to improve.</p></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="title reveal"><span>Let's connect</span><h2>Say Hello 👋</h2></div>
+  <div class="card reveal">
+    <p>Thanks for visiting my website! You can add your social links below.</p>
+    <div class="socials">
+      <a class="social" href="#" onclick="return false">📸 Instagram</a>
+      <a class="social" href="#" onclick="return false">💬 WhatsApp</a>
+      <a class="social" href="https://github.com/Ashlemtoppo">🐙 GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>Made with 💜 by Ashlem • © 2026</footer>
+
+<script>
+const items=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
+},{threshold:.12});
+items.forEach(x=>observer.observe(x));
+</script>
 </body>
 </html>
